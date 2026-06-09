@@ -1,7 +1,9 @@
 <?php
-    echo '<pre>';
-        print_r($_POST);
-    echo '</pre>';
+    // echo '<pre>';
+    //     print_r($_POST);
+    // echo '</pre>';
+
+    session_start();
 
     //estamos trabalhando na montagem do texto que será gravado no arquivo de texto, ou seja, o chamado que foi aberto no formulário de abertura de chamado
     $titulo = str_replace('#', '-', $_POST['titulo']); // str_replace() - função para substituir um texto por outro texto em uma string
@@ -10,7 +12,7 @@
 
     //implode('#', $_POST); // implode() - função para juntar os elementos de um array em uma string, utilizando um separador entre os elementos
     
-    $texto = $titulo . '#' . $categoria . '#' . $descricao . PHP_EOL; // PHP_EOL - constante do PHP para representar a quebra de linha de acordo com o sistema operacional
+    $texto = $_SESSION['id'] . '#' . $titulo . '#' . $categoria . '#' . $descricao . PHP_EOL; // PHP_EOL - constante do PHP para representar a quebra de linha de acordo com o sistema operacional
     
     //abrindo o arquivo 
     $arquivo = fopen('arquivo.hd', 'a'); // a - para abrir o arquivo para escrita e posicionar o ponteiro do arquivo no final do arquivo. Se o arquivo não existir, tentar criar o arquivo.

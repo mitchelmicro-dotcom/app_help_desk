@@ -60,16 +60,24 @@
 
                 <?
                    $chamado_dados = explode('#', $chamado);
+
+                    //verificar se o chamado pertence ao usuário autenticado ou se o usuário autenticado é um administrador, caso contrário, não exibir o chamado
+                    if($_SESSION['perfil_id'] == 2) {                      
+                        //só vamos exibir os chamados do usuário autenticado, ou seja, os chamados que foram abertos pelo usuário autenticado
+                        if($_SESSION['id'] != $chamado_dados[0]) {
+                          continue; // continue - para pular a iteração atual do loop e continuar com a próxima iteração do loop
+                        }  
+                    }
                     if(count($chamado_dados) < 3) {
-                     continue;            
+                    continue;            
                     }
                 ?>
               
                 <div class="card mb-3 bg-light">
                   <div class="card-body">
-                    <h5 class="card-title"><?=$chamado_dados[0]?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[1]?></h6>
-                    <p class="card-text"><?=$chamado_dados[2]?></p>
+                    <h5 class="card-title"><?=$chamado_dados[1]?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[2]?></h6>
+                    <p class="card-text"><?=$chamado_dados[3]?></p>
 
                   </div>
                 </div>
